@@ -10,7 +10,9 @@ func main() {
 }
 
 func same(normalArray []int, squaredArray []int) bool {
-
+	if len(normalArray) == 0 || len(squaredArray) == 0 || len(squaredArray) < len(normalArray) {
+		return false
+	}
 	// create the result bool as true
 	result := true
 	// create a map frequencyNormalMap of [int]int ([normalValue]nbOfFrequency)
