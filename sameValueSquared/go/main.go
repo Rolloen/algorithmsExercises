@@ -1,6 +1,8 @@
 package main
 
-import "log"
+import (
+	"log"
+)
 
 func main() {
 
@@ -10,12 +12,26 @@ func main() {
 func same(normalArray []int, squaredArray []int) bool {
 
 	// create the result bool as true
+	result := true
+	// create a map frequencyNormalMap of [int]int ([normalValue]nbOfFrequency)
+	// create a map frequencySquaredMap of [int]int ([squaredValue]nbOfFrequency)
+	frequencyNormalMap := make(map[int]int)
+	frequencySquaredMap := make(map[int]int)
 	// loop over the 1st array (normalArray)
-	// create a map frequenceArray of [int]int ([normalValue]nbOfFrequency)
+	for _, normalValue := range normalArray {
+		// add one to the frequence map
+		frequencyNormalMap[normalValue]++
+	}
+	// loop over the 2nd array (squaredArray)
+	for _, squaredValue := range squaredArray {
+		// add one to the frequence map
+		frequencySquaredMap[squaredValue]++
+	}
 	// loop over the frequenceArray
-	// check if key(of frequenceArray)^2 is in the squaredArray
-	// AND has the same frequency as frequenceArray[key]
-	// if not, set the bool to true, break the loop and return the result bool
-	// otherwise, continue the loop and return the result
-	return true
+	for key, freqVal := range frequencyNormalMap {
+		if frequencySquaredMap[key*key] != freqVal {
+			return false
+		}
+	}
+	return result
 }
